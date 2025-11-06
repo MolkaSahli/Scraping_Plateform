@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/ico" />
+
+    <title>Timelapse</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.css'%}" rel="stylesheet">
+
+    <!-- NProgress -->
+    <link href="{% static 'vendors/nprogress/nprogress.css'%}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static 'vendors/iCheck/skins/flat/green.css'%}" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css'%}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{% static 'vendors/jqvmap/dist/jqvmap.min.css'%}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css'%}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'build/css/custom.min.css'%}" rel="stylesheet">
+    <link href="{% static 'build/css/custom.css'%}" rel="stylesheet">
+
+
+    <script src="{% static 'js/custom.js'%}"></script>
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0; margin-top:27px;">
+              <a href="{% url 'index' %}" class="site_title"><img src="{% static 'production/images/timelapse2.png'%}"> <span>Timelapse</span></a>
+            </div>
+            <div class="nav toggle">
+              <a style="padding-top: 10px; padding-bottom: 0; margin-bottom: -30px;"id="menu_toggle"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+            </div>
+            <div class="clearfix"></div>
+
+            
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Menu</h3>
+                <ul class="nav side-menu">
+                  <li><a href="{% url 'index'%}"><i class="fa fa-home"></i> Acceuil </a>
+                  </li>
+                  <li><a href="{% url 'étapes' %}"><i class="fa fa-edit"></i> Web Scraping </a>
+                  </li>
+                  <li><a href="{% url 'projets' %}"><i class="fa fa-desktop"></i> Projets de Scraping </a>
+                  </li>
+                  <li><a href="{% url 'liste' %}"><i class="fa fa-table"></i> Sites à Scraper </a>
+                  </li>
+                </ul>
+              </div>
+              
+
+            </div>
+            <!-- /sidebar menu -->
+
+           
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+             
+              <nav class="nav navbar-nav">
+              <ul class=" navbar-right">
+                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src='{% static "production/images/img.jpg" %}' alt="">{{ user.username }}
+                  </a>
+                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                    
+                  
+                    <a class="dropdown-item"  href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  </div>
+                </li>
+                
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+        <script>
+         document.getElementById('menu_toggle').addEventListener('click', function() {
+          var sidebar = document.getElementById('sidebar-menu'); 
+          var icon = this.querySelector('i');
+
+          if (sidebar.classList.contains('sidebar-hidden')) {
+              sidebar.classList.remove('sidebar-hidden');
+              icon.classList.remove('fa-chevron-circle-right');
+              icon.classList.add('fa-chevron-circle-left');
+          } else {
+              sidebar.classList.add('sidebar-hidden');
+              sidebar.style.display = 'block';
+              icon.classList.remove('fa-chevron-circle-left');
+              icon.classList.add('fa-chevron-circle-right');
+          }
+          });
+        </script>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3><small>Liste de</small> Projets</h3>
+              </div>
+
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Projets</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    
+                    <!-- start project list -->
+                    <table class="table table-striped projects">
+
+                      <div class="row" style="width: 100%">
+                        <div class="col-sm-6" style="width: 50%;">
+                          <div class="dataTables_length" id="datatable_length" style="display: flex; align-items: center;">
+                            
+                          </div>
+                        </div>
+                        <div class="col-sm-6" style="width: 50%;">
+                          <div id="datatable_filter" class="dataTables_filter" style="margin-left: 55%;" >
+                        </div>
+                        </div>
+                      </div>
+                      <thead>
+                        <tr>
+                          <th style="width: 1%">#</th>
+                          <th style="width: 20%">URL du Site</th>
+                          <th>Nom du Fichier</th>
+                          <th>Avancement du Projet</th>
+                          <th>Statut</th>
+                          <th style="width: 20%">Modifier</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {%for p in projet%}
+                        <tr>
+                          <td>{{p.id}}</td>
+                          <td>
+                            <a>{{p.url_site}}</a>
+                            <br />
+                            <small>Created {{p.date_debut}}</small>
+                          </td>
+                          <td class="file_name">
+                            {{p.nom_fichier}} 
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar {% if p.progress == 100%} bg-green{% elif p.progress == 0%} bg-red {% else %} bg-blue {% endif %}" role="progressbar" data-transitiongoal="{{p.progress}}"></div>
+                            </div>
+                            <small>{{p.progress}}% Complete</small>
+                          </td>
+                          <td >
+                            <h3 class="{% if p.Statut == 'Succès' %} succ {% elif p.Statut == 'En Cours' %} load {% else %} echec {% endif %}"> {{p.Statut}} </h3>
+                          </td>
+                          
+                          <td>
+                            <a href="{% url 'download' p.id %}" class="btn btn-info btn-xs"><i class="fa fa-download" aria-hidden="true"></i> Télécharger </a>
+                            <a href="{% url 'delete_project' p.id %}" class="btn btn-warning btn-xs"><i class="fa fa-trash-o"></i> Supprimer </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                        
+                        
+                      </tbody>
+                      
+                    </table>
+                    
+                    <!-- end project list -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Timelapse - Software Developement Company 
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js'%}"></script>
+    <!-- Bootstrap -->
+   <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'vendors/nprogress/nprogress.js'%}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{% static 'vendors/bootstrap-progressbar/bootstrap-progressbar.min.js'%}"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'build/js/custom.min.js' %}"></script>
+  </body>
+</html>

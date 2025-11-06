@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/ico" />
+
+    <title>Timelapse</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.css'%}" rel="stylesheet">
+
+    <!-- NProgress -->
+    <link href="{% static 'vendors/nprogress/nprogress.css'%}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static 'vendors/iCheck/skins/flat/green.css'%}" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css'%}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{% static 'vendors/jqvmap/dist/jqvmap.min.css'%}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css'%}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'build/css/custom.min.css'%}" rel="stylesheet">
+    <link href="{% static 'build/css/custom.css'%}" rel="stylesheet">
+
+
+    <script src="{% static 'js/custom.js'%}"></script>
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0; margin-top:27px;">
+              <a href="{% url 'index' %}" class="site_title"><img src="{% static 'production/images/timelapse2.png'%}"> <span>Timelapse</span></a>
+            </div>
+            <div class="nav toggle">
+              <a style="padding-top: 10px; padding-bottom: 0; margin-bottom: -30px;"id="menu_toggle"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+            </div>
+            <div class="clearfix"></div>
+
+            
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Menu</h3>
+                <ul class="nav side-menu">
+                  <li><a href="{% url 'index'%}"><i class="fa fa-home"></i> Acceuil </a>
+                  </li>
+                  <li><a href="{% url 'étapes' %}"><i class="fa fa-edit"></i> Web Scraping </a>
+                  </li>
+                  <li><a href="{% url 'projets' %}"><i class="fa fa-desktop"></i> Projets de Scraping </a>
+                  </li>
+                  <li><a href="{% url 'liste' %}"><i class="fa fa-table"></i> Sites à Scraper </a>
+                  </li>
+                </ul>
+              </div>
+              
+
+            </div>
+            <!-- /sidebar menu -->
+
+           
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+             
+              <nav class="nav navbar-nav">
+              <ul class=" navbar-right">
+                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src='{% static "production/images/img.jpg" %}' alt="">{{ user.username }}
+                  </a>
+                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                    
+                  
+                    <a class="dropdown-item"  href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  </div>
+                </li>
+                
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+        <script>
+         document.getElementById('menu_toggle').addEventListener('click', function() {
+          var sidebar = document.getElementById('sidebar-menu'); 
+          var icon = this.querySelector('i');
+
+          if (sidebar.classList.contains('sidebar-hidden')) {
+              sidebar.classList.remove('sidebar-hidden');
+              icon.classList.remove('fa-chevron-circle-right');
+              icon.classList.add('fa-chevron-circle-left');
+          } else {
+              sidebar.classList.add('sidebar-hidden');
+              sidebar.style.display = 'block';
+              icon.classList.remove('fa-chevron-circle-left');
+              icon.classList.add('fa-chevron-circle-right');
+          }
+          });
+        </script>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Liste <small>de Sites à Scraper</small></h3>
+              </div>
+
+              
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row" style="display: block;">
+
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Sites </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th># </th>
+                            <th class="column-title" style="text-align: center;">Nom du Site </th>
+                            <th class="column-title" style="text-align: center;">URL </th>
+                            <th class="column-title" style="text-align: center;">Description </th>
+                            <th class="column-title" style="text-align: center;">Spécialité</th>
+                            <th class="column-title" style="text-align: center;">Catégories</th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for s in listes %}
+                            
+                            <tr class="{% if s.id|divisibleby:2 %}even pointer{%else%}odd pointer {% endif %}">
+                              <td class="a-center ">{{s.id}}</td>
+                              <td class=" ">{{s.Nom}}</td>
+                              <td class=" "><a href="{{s.url }}">{{s.url}}</a></td>
+                              <td class=" ">{{s.description}}</td>
+                              <td class=" " style="text-align: center;">{{s.specialite}}</td>
+                              <td class=" ">{{s.Categories}}</td>
+                              </td>
+                            </tr>
+                          {% endfor %}
+                          
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Timelapse - Software Developement Company 
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js'%}"></script>
+    <!-- Bootstrap -->
+   <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'vendors/fastclick/lib/fastclick.js'%}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'vendors/nprogress/nprogress.js'%}"></script>
+    <!-- iCheck -->
+    <script src="{% static 'vendors/iCheck/icheck.min.js'%}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'build/js/custom.min.js'%}"></script>
+  </body>
+</html>

@@ -23,12 +23,14 @@ It is ideal for collecting structured data for analytics, reporting, or database
    - User authentication  
    - Allows new users to sign up and existing users to log in  
 
+
    <img src="captures/login.png" alt="1" width="500"/>
 
 
 2. **Dashboard / Projects Page**  
    - View all existing scraping projects  
    - Access details and download results  
+
 
    <img src="captures/projets.png" alt="2" width="500"/>
 
@@ -39,12 +41,14 @@ It is ideal for collecting structured data for analytics, reporting, or database
    - Enter the name of the Excel file to save the data  
    - Execute scraping and track progress  
 
+
    <img src="captures/form.png" alt="3" width="500"/>
 
 4. **Sites Selection Page**  
    - Lists all available websites that can be scraped  
    - Users select the site they want to scrape before starting a project  
    - Each site may have different scraping options or requirements 
+
 
    <img src="captures/sites.png" alt="4" width="500"/>
 
